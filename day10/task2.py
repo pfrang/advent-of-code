@@ -4,55 +4,48 @@ import numpy
 f = open('input.txt', 'r')
 content = f.readlines()
 
-f2 = open('input2.txt', 'r')
-
 score = 1
 cycle = 0
+sprite_position = 1
 my_dict = {}
 
-
-d = numpy.zeros((5,40))
-
-print(d)
-
 def checkforCycle():
-    if(cycle == 20):
-        print(score)
-        my_dict[20] = score * 20
-    elif(cycle == 60):
-        print(score)
-        my_dict[60] = score * 60
-    elif(cycle == 100):
-        print(score)
-        my_dict[100] = score * 100
-    elif(cycle == 140):
-        print(score)
-        my_dict[140] = score * 140
-    elif(cycle == 180):
-        print(score)
-        my_dict[180] = score * 180
-    elif(cycle == 220):
-        print(score)
-        my_dict[220] = score * 220
+    global sprite_position
+    if(cycle == 40):
+        sprite_position = 1
+        print("\n")
+    elif(cycle == 80):
+        sprite_position = 1
+        print("\n")
+    elif(cycle == 120):
+        sprite_position = 1
+        print("\n")
+    elif(cycle == 160):
+        sprite_position = 1
+        print("\n")
+    elif(cycle == 200):
+        sprite_position = 1
+        print("\n")
+    elif(cycle == 240):
+        sprite_position = 1
+        print("\n")
+    if(sprite_position in [score, score +1, score+2]):
+        print("#", end="")
+    else:
+        print(".",end="")
 
 for row in content:
     row = row.replace('\n','')
     if("addx" in row):
         nr = int(row.split(" ")[1])
         cycle += 1
+        sprite_position += 1
         checkforCycle()
         cycle += 1
+        sprite_position += 1
         checkforCycle()
         score += nr
     elif("noop" in row):
         cycle += 1
+        sprite_position += 1
         checkforCycle()
-
-
-
-sum = 0
-for key,value in my_dict.items():
-    sum += value
-
-print(my_dict)
-print(sum)
